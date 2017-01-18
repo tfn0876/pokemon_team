@@ -1,1 +1,10 @@
 node_modules/
+client/*/*.js
+client/*/*.js.map
+client/app/*.js
+client/app/*.js.map
+client/app/*/*.js
+client/app/*/*.js.map
+client/app/*/*/*.js
+client/app/*/*/*.js.map
+bower_components/

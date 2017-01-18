@@ -1,0 +1,31 @@
+{
+  "name": "pokemon_team",
+  "version": "1.0.0",
+  "description": "KSI CIS510 Software project management project",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "mongojs": "^2.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tfn0876/pokemon_team.git"
+  },
+  "keywords": [
+    "angular",
+    "mongodb",
+    "mlab"
+  ],
+  "author": "Funing Teng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tfn0876/pokemon_team/issues"
+  },
+  "homepage": "https://github.com/tfn0876/pokemon_team#readme"
+}
