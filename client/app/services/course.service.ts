@@ -25,10 +25,10 @@ export class CourseService{
             .map(res => res.json());
     }
     
-    updateStatus(task){
+    updateStatus(course){
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.put('/api/task/'+task._id, JSON.stringify(task), {headers: headers})
+        return this.http.put('/api/course/'+course._id, JSON.stringify(course), {headers: headers})
             .map(res => res.json());
     }
 }
