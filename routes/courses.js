@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs');
-//var db = mongojs('mongodb://pokemon_db:cis510_pokemon@ds111529.mlab.com:11529/teaching', ['courses']);
-var db = mongojs('mongodb://hardikparikh1988:123456798@ds117889.mlab.com:17889/testdbhardik', ['courses']);
+var db = mongojs('mongodb://pokemon_db:cis510_pokemon@ds111529.mlab.com:11529/teaching', ['courses']);
+//var db = mongojs('mongodb://hardikparikh1988:123456798@ds117889.mlab.com:17889/testdbhardik', ['courses']);
 
 // get all courses
 router.get('/courses', function(req, res, next){

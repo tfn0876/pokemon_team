@@ -2,10 +2,11 @@
 <div class="well">
     This is course component.
 </div>
-<!--
+
 <form class="well" (submit)="addCourse($event)">
       <div class="form-group">
         <input type="text" [(ngModel)]="title" name="title" class="form-control" placeholder="Add Course...">  
+        <input type="text" [(ngModel)]="code" name="code" class="form-control" placeholder="Add Code...">  
         <button type="submit"  >Submit</button>
       </div>  
       
@@ -13,8 +14,11 @@
 
 <div class="course-list">
     <div *ngFor="let course of courses">
-        <div class="col-md-7">
+        <div class="col-md-4">
             {{course.title}}    
+        </div> 
+        <div class="col-md-3">
+            {{course.code}}    
         </div> 
         <div class="col-md-4">
             <input type="button" (click)="deleteCourse(course._id)" value="Delete" class="btn btn-danger">    
@@ -22,4 +26,3 @@
         <br><br>
     </div>
 </div>
--->

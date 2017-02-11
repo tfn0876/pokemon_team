@@ -8,3 +8,5 @@ client/app/*/*.js.map
 client/app/*/*/*.js
 client/app/*/*/*.js.map
 bower_components/
+client/npm-debug.log.2241850167
+npm-debug.log.2546371572
