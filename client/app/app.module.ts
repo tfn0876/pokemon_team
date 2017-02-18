@@ -7,12 +7,13 @@ import { RouterModule }   from '@angular/router';
 import {AppComponent} from './app.component';
 import {CoursesComponent} from './components/courses/courses.component';
 import {StudentComponent} from './components/student/student.component';
+import {CourseSessionComponent} from './components/course-sessions/course-sessions.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 
 import { AppRoutingModule }     from './app-routing.module';
 @NgModule({
   imports:      [ BrowserModule, HttpModule, FormsModule,AppRoutingModule ],
-  declarations: [AppComponent, CoursesComponent,StudentComponent,DashboardComponent],
+  declarations: [AppComponent, CoursesComponent,StudentComponent,DashboardComponent, CourseSessionComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

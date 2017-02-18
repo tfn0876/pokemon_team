@@ -1,30 +1,41 @@
-<h2>Courses Component</h2>
-<div class="well">
-    This is course component.
-</div>
-
+<h2>Courses</h2>
 <form class="well" (submit)="addCourse($event)">
     <div class="form-group">
         <input type="text" [(ngModel)]="title" name="title" class="form-control" placeholder="Add Course...">
         <input type="text" [(ngModel)]="code" name="code" class="form-control" placeholder="Add Code...">
-        <button type="submit">Submit</button>
+        <button type="submit">Add</button>
     </div>
 
 </form>
 
-<table class="dataTable border bordered" data-auto-width="false">
+<table *ngIf="courses" class="dataTable border bordered" data-role="datatable" data-searching="true">
     <thead>
         <tr>
-            <td>TITLE</td>
+            <td>TITLE</td>  
             <td>CODE</td>
             <td>MANAGE</td>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let course of courses">
-            <td> {{course.title}}</td>
-            <td> {{course.code}}</td>
-            <td>  <input class="button danger" type="button" (click)="deleteCourse(course._id)" value="Delete"> </td>
+            <td>
+                <span [hidden]="course.editState"> {{course.title}} </span>
+                <input [hidden]="!course.editState" type="text" [(ngModel)]="course.title" name="title" class="form-control" placeholder="Edit Course...">
+            </td>
+            <td>
+                <span [hidden]="course.editState">  {{course.code}} </span>
+                <input [hidden]="!course.editState" type="text" [(ngModel)]="course.code" name="code" class="form-control" placeholder="Edit Code...">
+            </td>
+            <td>
+                <span [hidden]="course.editState">  
+                    <a class="button primary" type="button" (click)="editCourse(course)">edit</a>
+                    </span>
+                <span [hidden]="!course.editState">                  
+                    <a class="button primary" type="button" (click)="updateCourse(course)">Save</a>
+                    </span>
+                <a class="button info" type="button" [routerLink]="['/course-detail', course._id]">Detail</a>
+                <input class="button danger" type="button" (click)="deleteCourse(course._id)" value="Delete">
+            </td>
         </tr>
     </tbody>
 </table>
