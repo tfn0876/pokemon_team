@@ -2,7 +2,7 @@
   "name": "mytasklist",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\"",
+    "start": "concurrently \"npm run tsc:w\" ",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
