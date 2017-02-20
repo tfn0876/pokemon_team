@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 import { Course } from '../../../model/course';
+
 @Component({
     moduleId: module.id,
     selector: 'courses',
@@ -15,8 +16,18 @@ export class CoursesComponent {
         this.courseService.getCourses()
             .subscribe(courses => {
                 this.courses = courses;
+                // this.reloadDataTable();
             });
     }
+    // reloadDataTable() {
+    //     var i = setInterval(function () {
+    //         $(".dataTable").dataTable({
+    //             'searching': true
+    //         });
+    //         clearInterval(i);
+    //     }, 1000);
+    // }
+
     addCourse(event) {
         event.preventDefault();
         var newCourse = {
@@ -28,6 +39,7 @@ export class CoursesComponent {
             .subscribe(course => {
                 this.courses.push(course);
                 this.title = '';
+                this.code = '';
             });
     }
 
@@ -48,12 +60,14 @@ export class CoursesComponent {
     }
     updateCourse(course) {
         var _course = {
-            _id: course._id,
             title: course.title,
             code: course.code
         };
-        this.courseService.updateStatus(_course).subscribe(data => {
+        this.courseService.updateStatus(course._id, _course).subscribe(data => {
             // update course sucessfully
+            if (data && typeof data.errmsg !== 'undefined') {
+                console.log(data.errmsg);
+            }
             course.editState = !course.editState;
         });
     }

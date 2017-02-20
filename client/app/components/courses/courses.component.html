@@ -5,13 +5,11 @@
         <input type="text" [(ngModel)]="code" name="code" class="form-control" placeholder="Add Code...">
         <button type="submit">Add</button>
     </div>
-
 </form>
-
-<table *ngIf="courses" class="dataTable border bordered" data-role="datatable" data-searching="true">
+<table *ngIf="courses" class="dataTable border bordered">
     <thead>
         <tr>
-            <td>TITLE</td>  
+            <td>TITLE</td>
             <td>CODE</td>
             <td>MANAGE</td>
         </tr>
@@ -29,12 +27,13 @@
             <td>
                 <span [hidden]="course.editState">  
                     <a class="button primary" type="button" (click)="editCourse(course)">edit</a>
-                    </span>
+                    <a class="button info" type="button" [routerLink]="['/course-detail', course._id]">Detail</a>
+                    <input class="button danger" type="button" (click)="deleteCourse(course._id)" value="Delete">
+                </span>
                 <span [hidden]="!course.editState">                  
                     <a class="button primary" type="button" (click)="updateCourse(course)">Save</a>
-                    </span>
-                <a class="button info" type="button" [routerLink]="['/course-detail', course._id]">Detail</a>
-                <input class="button danger" type="button" (click)="deleteCourse(course._id)" value="Delete">
+                    <a class="button danger" type="button" (click)="editCourse(course)">Cancel</a>
+                </span>
             </td>
         </tr>
     </tbody>

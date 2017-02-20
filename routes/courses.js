@@ -16,7 +16,9 @@ router.get('/courses', function (req, res, next) {
 
 // get single course
 router.get('/course/:id', function (req, res, next) {
-    db.courses.findOne({ _id: mongojs.ObjectId(req.params.id) }, function (err, course) {
+    db.courses.findOne({
+        _id: mongojs.ObjectId(req.params.id)
+    }, function (err, course) {
         if (err) {
             res.send(err);
         }
@@ -44,7 +46,9 @@ router.post('/course', function (req, res, next) {
 
 // delete single course
 router.delete('/course/:id', function (req, res, next) {
-    db.courses.remove({ _id: mongojs.ObjectId(req.params.id) }, function (err, course) {
+    db.courses.remove({
+        _id: mongojs.ObjectId(req.params.id)
+    }, function (err, course) {
         if (err) {
             res.send(err);
         }
@@ -55,8 +59,12 @@ router.delete('/course/:id', function (req, res, next) {
 // update course
 router.put('/course/:id', function (req, res, next) {
     var course = req.body;
-    if (course && !course.title && !course.code) {
-        db.courses.update({ _id: mongojs.ObjectId(req.params.id) }, course, {}, function (err, course) {
+    console.log(course);
+    console.log(course.title);
+    if (course && course.title && course.code) {
+        db.courses.update({
+            _id: mongojs.ObjectId(req.params.id)
+        }, course, {}, function (err, course) {
             if (err) {
                 res.send(err);
             }
@@ -71,7 +79,9 @@ router.put('/course/:id', function (req, res, next) {
 });
 
 router.get('course-sessions:id', function (req, res, next) {
-    db.courses.find({ _id: mongojs.ObjectId(req.params.id) }, function (err, course) {
+    db.courses.find({
+        _id: mongojs.ObjectId(req.params.id)
+    }, function (err, course) {
         if (err) {
             res.send(err);
         }
@@ -80,4 +90,3 @@ router.get('course-sessions:id', function (req, res, next) {
 });
 
 module.exports = router;
-
