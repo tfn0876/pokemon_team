@@ -1,55 +1,80 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 import { Course } from '../../../model/course';
-
+import { TruncatePipe } from '../../Pipe/truncate';
 @Component({
     moduleId: module.id,
     selector: 'courses',
     templateUrl: 'courses.component.html',
     providers: [CourseService]
+
 })
 export class CoursesComponent {
     courses: Course[];
+    courseRepo: Course[];
     title: string;
     code: string;
-    constructor(private courseService: CourseService) {
+    description: string;
+    filter: string;
+    table: any;
+    constructor(private courseService: CourseService,
+        private zone: NgZone) {
         this.courseService.getCourses()
             .subscribe(courses => {
                 this.courses = courses;
-                // this.reloadDataTable();
+                this.courseRepo = [];
+                for (let c of this.courses) {
+                    this.courseRepo.push(c);
+                }
             });
     }
-    // reloadDataTable() {
-    //     var i = setInterval(function () {
-    //         $(".dataTable").dataTable({
-    //             'searching': true
-    //         });
-    //         clearInterval(i);
-    //     }, 1000);
-    // }
+
+    emptyCourse() {
+        while (this.courses.length > 0) {
+            this.courses.pop();
+        }
+    }
+
+    applyfilter() {
+        this.emptyCourse();
+        for (let entry of this.courseRepo) {
+            if (this.filter) {
+                if ((entry.title && entry.title.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)
+                    || (entry.code && entry.code.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)
+                ) {
+                    this.courses.push(entry);
+                }
+            } else {
+                this.courses.push(entry);
+            }
+        }
+    }
 
     addCourse(event) {
         event.preventDefault();
         var newCourse = {
             title: this.title,
-            code: this.code
+            code: this.code,
+            description: this.description
         }
 
         this.courseService.addCourse(newCourse)
             .subscribe(course => {
-                this.courses.push(course);
+                this.courseRepo.push(course);
                 this.title = '';
                 this.code = '';
+                this.applyfilter();
             });
     }
 
     deleteCourse(id) {
-        var courses = this.courses;
+        var courses = this.courseRepo;
         this.courseService.deleteCourse(id).subscribe(data => {
             if (data.n == 1) {
                 for (var i = 0; i < courses.length; i++) {
                     if (courses[i]._id == id) {
                         courses.splice(i, 1);
+                        this.applyfilter();
                     }
                 }
             }
@@ -61,7 +86,8 @@ export class CoursesComponent {
     updateCourse(course) {
         var _course = {
             title: course.title,
-            code: course.code
+            code: course.code,
+            description: course.description
         };
         this.courseService.updateStatus(course._id, _course).subscribe(data => {
             // update course sucessfully
