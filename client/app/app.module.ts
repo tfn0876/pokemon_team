@@ -9,7 +9,7 @@ import {CoursesComponent} from './components/courses/courses.component';
 import {StudentComponent} from './components/student/student.component';
 import {CourseSessionComponent} from './components/course-sessions/course-sessions.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {TruncatePipe} from './Pipe/truncate';
+import {TruncatePipe} from './pipe/truncate';
 import { AppRoutingModule }     from './app-routing.module';
 @NgModule({
   imports:      [ BrowserModule, HttpModule, FormsModule,AppRoutingModule ],
