@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Course } from '../../model/course';
+import { CourseSession } from '../../model/course-session';
 
 @Injectable()
 export class CourseService {
+    currentCourse: Course;
     constructor(private http: Http) {
         console.log('Course Service Initialized...');
     }
@@ -39,12 +42,13 @@ export class CourseService {
 
     getCourseSessions(id) {
         return this.http.get('/api/sessions/' + id)
-            .map(res => {if(res.status<200 || res.status > 300) {
-                throw new Error('GetCourseSessions request has failed ' + res.status);
-            } else {
-                return res.json();
-            }
-        });
+            .map(res => {
+                if (res.status < 200 || res.status > 300) {
+                    throw new Error('GetCourseSessions request has failed ' + res.status);
+                } else {
+                    return res.json();
+                }
+            });
     }
 
     getCourseSession(id) {

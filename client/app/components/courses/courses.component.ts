@@ -92,15 +92,15 @@ export class CoursesComponent {
                     this.notiService.alert(`Saved Course ${data.errmsg}`);
                 }
                 course.editState = !course.editState;
+                this.notiService.success(`Saved Course ${course.title}`);
             });
-            this.notiService.success(`Saved Course ${course.title}`);
         } else {
             this.courseService.addCourse(course)
                 .subscribe(course => {
                     this.courseRepo.push(course);
                     this.applyfilter();
+                    this.notiService.success(`Added Course ${course.title}`);
                 });
-            this.notiService.success(`Added Course ${course.title}`);
         }
     }
 }

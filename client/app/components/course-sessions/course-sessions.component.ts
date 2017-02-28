@@ -43,6 +43,7 @@ export class CourseSessionComponent implements OnInit {
             .switchMap((params: Params) => this.courseService.getCourse(params['id']))
             .subscribe((course) => {
                 this.course = course;
+                this.courseService.currentCourse = course;
             }), (err) => {
                 this.notiService.alert(err);
             };
@@ -55,6 +56,7 @@ export class CourseSessionComponent implements OnInit {
             professor: "",
             startDate: new Date(),
             endDate: new Date(),
+            daysOftheWeek: 0,
             editState: true
         };
     }
@@ -114,15 +116,15 @@ export class CourseSessionComponent implements OnInit {
                     this.notiService.alert(`Saved Course ${data.errmsg}`);
                 }
                 courseSession.editState = !courseSession.editState;
+                this.notiService.success(`Saved Course Session ${courseSession.name}`);
             });
-            this.notiService.success(`Saved Course Session ${courseSession.title}`);
         } else {
             this.courseService.addCourseSession(courseSession)
                 .subscribe(courseSession => {
                     this.courseSessionRepo.push(courseSession);
                     this.applyfilter();
+                    this.notiService.success(`Added Course ${courseSession.name}`);
                 });
-            this.notiService.success(`Added Course ${courseSession.title}`);
         }
     }
 }

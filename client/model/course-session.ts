@@ -6,5 +6,6 @@ export class CourseSession{
      professor: string;
      startDate: Date;
      endDate: Date;    
+     daysOftheWeek: number;
      editState: boolean;
 }

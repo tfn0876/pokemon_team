@@ -1,0 +1,12 @@
+<div *ngIf="course">
+    <h2>{{course.code}} - {{course.title}} - {{courseSession.name}} <button class="button primary" (click)="goBack()">Back</button></h2>
+    <h6>Professor: {{courseSession.professor}}</h6>
+    <p><em>Date: {{courseSession.startDate | date}}</em> To <em>{{courseSession.endDate | date}}</em>, Day of Week: {{courseSession.daysOftheWeek
+        | dayofweek}} </p>
+    <p>{{course.description}}</p>
+</div>
+<nav>
+    <a routerLink="currentStudents" routerLinkActive="active"><span class="icon mif-users"></span>CURRENT STUDENTS</a>
+    <a routerLink="register" routerLinkActive="active"><span class="icon mif-user-plus"></span>REGISTER</a>
+</nav>
+<router-outlet></router-outlet>
