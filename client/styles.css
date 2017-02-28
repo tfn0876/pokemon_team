@@ -1,0 +1,131 @@
+html,
+body {
+    height: 100%;
+}
+
+.page-content {
+    padding-top: 3.125rem;
+    min-height: 100%;
+    height: 100%;
+}
+
+.table .input-control.checkbox {
+    line-height: 1;
+    min-height: 0;
+    height: auto;
+}
+
+#cell-sidebar {
+    flex-basis: 52px;
+}
+
+#cell-content {
+    flex-basis: calc(100% - 52px);
+}
+
+.dataTable th,
+.dataTable td {
+    padding: 0.125rem 0.625rem !important;
+}
+
+tbody::-webkit-scrollbar-thumb {
+    background-color: #5a5f65;
+}
+
+tbody::-webkit-scrollbar {
+    width: 5px;
+}
+
+tbody::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+tbody::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+tbody::-webkit-scrollbar-thumb {
+    background-color: #5a5f65;
+}
+
+tbody::-webkit-scrollbar {
+    width: 5px;
+}
+
+tbody {
+    overflow-y: scroll;
+    height: 400px;
+    position: absolute;
+    width: calc(100% - 1px);
+    border-bottom: 1px solid #c0c0c0 !important;
+    border-left: 1px solid #c0c0c0 !important;
+    border-right: 1px solid #c0c0c0 !important;
+}
+
+td {
+    border-right: #afa9a9 1px solid;
+    border-bottom: #afa9a9 1px solid;
+}
+
+tbody tr {
+    width: 100%;
+    display: inline-table;
+}
+
+table {
+    position: relative;
+}
+
+td.title,
+th.title {
+    width: 15%;
+}
+
+td.code,
+th.code {
+    width: 15%;
+}
+
+td.duration,
+th.duration {
+    width: 30%;
+}
+
+td.daysOftheWeek,
+th.daysOftheWeek {
+    width: 20%;
+}
+
+td.manage,
+th.manage {
+    width: 20%;
+}
+
+td.description,
+th.description {
+    width: 50%;
+}
+.input-control.text, .input-control.select, .input-control.file, .input-control.password, .input-control.number, .input-control.email, .input-control.tel {
+    width: 100% !important;
+}
+
+table .active{
+    width: 10%;
+}
+table .firstName{
+    width: 20%;
+}
+table .lastName{
+    width: 20%;
+}
+table .email{
+    width: 20%;
+}
+table .phone{
+    width: 20%;
+}
+table .register{
+    width: 10%;
+}
