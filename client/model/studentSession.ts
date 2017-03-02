@@ -1,5 +1,6 @@
 import { Student } from './student';
-import { CourseSession } from "./course-session"
+import { CourseSession } from "./course-session";
+
 export class StudentSession {
     _id?: any;
     student_id: any;

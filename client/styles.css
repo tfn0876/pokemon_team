@@ -142,3 +142,10 @@ table .register{
 .button.loading-pulse {
     position: relative;
 }
+
+.button:disabled, .button.disabled {
+    background-color: #eaeaea !important;
+    color: #bebebe !important;
+    cursor: default;
+    border-color: transparent;
+}

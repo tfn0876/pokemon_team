@@ -76,7 +76,6 @@ router.put('/course', function (req, res, next) {
             if (err) {
                 res.send(err);
             }
-            console.log(course);
             res.json(course);
         });
     } else {
@@ -161,13 +160,13 @@ router.put('/session', function (req, res, next) {
             professor: courseSession.professor,
             startDate: courseSession.startDate,
             endDate: courseSession.endDate,
-            daysOftheWeek: courseSession.daysOftheWeek
+            daysOftheWeek: courseSession.daysOftheWeek,
+            attendanceTemplate: courseSession.attendanceTemplate
         };
         db.courseSessions.update({
             _id: mongojs.ObjectId(courseSession._id)
         }, _courseSessoin, {}, function (err, courseSession) {
             if (err) {
-                console.log(err);
                 res.send(err);
             }
             res.json(courseSession);
@@ -253,7 +252,6 @@ router.put('/student', function (req, res, next) {
         db.students.update({
             _id: mongojs.ObjectId(student._id)
         }, _student, {}, function (err, student) {
-            console.log(student);
             if (err) {
                 res.send(err);
             }
@@ -309,7 +307,6 @@ router.post('/student-session', function (req, res, next) {
             dropClass: studentSession.dropClass
         };
         db.studentSessions.save(_studentSessoin, function (err, studentSession) {
-            console.log(studentSession);
             if (err) {
                 res.send(err);
             }
@@ -323,7 +320,6 @@ router.delete('/student-session/:id', function (req, res, next) {
     db.studentSessions.remove({
         _id: mongojs.ObjectId(req.params.id)
     }, function (err, studentSession) {
-        console.log(studentSession);
         if (err) {
             res.send(err);
         }
@@ -343,7 +339,6 @@ router.put('/student-session', function (req, res, next) {
         db.studentSessions.update({
             _id: mongojs.ObjectId(studentSession._id)
         }, _studentSession, {}, function (err, studentSession) {
-            console.log(studentSession);
             if (err) {
                 res.send(err);
             }
