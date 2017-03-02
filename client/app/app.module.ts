@@ -13,6 +13,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterStudentComponent } from './components/session-detail/register-student.component';
 import { CurrentStudentsComponent } from './components/session-detail/current-students.component';
 import { SessionSettingComponent } from './components/session-detail/session-setting.component';
+import { SessionAttendanceComponent } from './components/session-detail/session-attendance.component';
 import { TruncatePipe } from './pipe/truncate';
 import { DayOfWeekPipe } from './pipe/dayofweek'
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
     CurrentStudentsComponent,
     SessionSettingComponent,
     SessionDetailComponent, 
+    SessionAttendanceComponent,
     TruncatePipe, 
     DayOfWeekPipe
     ],

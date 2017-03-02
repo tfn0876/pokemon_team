@@ -9,6 +9,8 @@ import { SessionDetailComponent } from './components/session-detail/session.comp
 import { RegisterStudentComponent } from './components/session-detail/register-student.component';
 import { CurrentStudentsComponent } from './components/session-detail/current-students.component';
 import { SessionSettingComponent } from './components/session-detail/session-setting.component';
+import { SessionAttendanceComponent } from './components/session-detail/session-attendance.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
@@ -20,6 +22,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterStudentComponent },
       { path: 'currentStudents', component: CurrentStudentsComponent },
       { path: 'setting', component: SessionSettingComponent },
+      { path: 'attendance', component: SessionAttendanceComponent },
     ]
   },
   { path: 'students', component: StudentComponent }

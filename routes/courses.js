@@ -333,7 +333,8 @@ router.put('/student-session', function (req, res, next) {
     var _studentSession = {
         student_id: mongojs.ObjectId(studentSession.student_id),
         courseSession_id: mongojs.ObjectId(studentSession.courseSession_id),
-        dropClass: studentSession.dropClass
+        dropClass: studentSession.dropClass,
+        attendance: studentSession.attendance
     };
     if (_studentSession && studentSession.student_id && studentSession.courseSession_id) {
         db.studentSessions.update({

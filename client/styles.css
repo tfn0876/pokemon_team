@@ -107,26 +107,38 @@ td.description,
 th.description {
     width: 50%;
 }
-.input-control.text, .input-control.select, .input-control.file, .input-control.password, .input-control.number, .input-control.email, .input-control.tel {
+
+.input-control.text,
+.input-control.select,
+.input-control.file,
+.input-control.password,
+.input-control.number,
+.input-control.email,
+.input-control.tel {
     width: 100% !important;
 }
 
-table .active{
+table .active {
     width: 10%;
 }
-table .firstName{
+
+table .firstName {
     width: 20%;
 }
-table .lastName{
+
+table .lastName {
     width: 20%;
 }
-table .email{
+
+table .email {
     width: 20%;
 }
-table .phone{
+
+table .phone {
     width: 20%;
 }
-table .register{
+
+table .register {
     width: 10%;
 }
 
@@ -139,13 +151,53 @@ table .register{
     background-color: lightskyblue;
     color: white;
 }
+
 .button.loading-pulse {
     position: relative;
 }
 
-.button:disabled, .button.disabled {
+.button:disabled,
+.button.disabled {
     background-color: #eaeaea !important;
     color: #bebebe !important;
     cursor: default;
     border-color: transparent;
+}
+
+table.attendanceSheet .name {
+    width: 20px;
+}
+
+table.attendanceSheet .date {
+    width: 5%;
+}
+
+table.attendanceSheet .date.holiday {
+    background-color: #eaeaea !important;
+    color: #bebebe !important;
+}
+
+button.button.hasNote {
+    color: red !important;
+}
+.stickyNote {
+    display: block;
+    width: 300px;
+    position: absolute;
+    top: 10%;
+    background-color: #f9ef89;
+    right: 10%;
+    padding: 5px;
+    height: 300px;
+    z-index: 1000;
+}
+
+.stickyNote textarea {
+    background-color: #f9ef89;
+}
+
+span.pull-right.mif-cancel {
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
 }

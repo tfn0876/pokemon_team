@@ -86,7 +86,7 @@ export class SessionSettingComponent implements OnInit {
 
         }
     }
-    saveAttendanceChange() {
+    saveAttendanceChange(): void {
         this.courseSession.attendanceTemplate = this.attendances;
         this.courseService.updateCourseSession(this.courseSession).subscribe(
             data => {

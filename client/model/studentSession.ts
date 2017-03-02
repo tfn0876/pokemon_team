@@ -1,5 +1,6 @@
 import { Student } from './student';
 import { CourseSession } from "./course-session";
+import { Attendance } from './attendance';
 
 export class StudentSession {
     _id?: any;
@@ -9,4 +10,5 @@ export class StudentSession {
     courseSession?: CourseSession;
     dropClass?: boolean;
     editState?: boolean;
+    attendance?: Attendance[];
 }
