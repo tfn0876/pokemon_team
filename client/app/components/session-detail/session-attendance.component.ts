@@ -58,7 +58,27 @@ export class SessionAttendanceComponent implements OnInit {
                 this.loaded = true;
             });
     }
-
+    emptyStudents() {
+        while (this.studentSessions.length > 0) {
+            this.studentSessions.pop();
+        }
+    }
+    applyfilter(): void {
+        this.emptyStudents();
+        for (let entry of this.studentSessionsRepo) {
+            if (this.filter) {
+                if ((entry.student.firstName && entry.student.firstName.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)
+                    || (entry.student.lastName && entry.student.lastName.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)
+                    || (entry.student.email && entry.student.email.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)
+                    || (entry.student.phone && entry.student.phone.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)
+                ) {
+                    this.studentSessions.push(entry);
+                }
+            } else {
+                this.studentSessions.push(entry);
+            }
+        }
+    }
     bindStudentsWithStudentSession(): void {
         for (let studentSession of this.studentSessionsRepo) {
             studentSession.student = this.students.find(student => student._id == studentSession.student_id);
@@ -100,15 +120,14 @@ export class SessionAttendanceComponent implements OnInit {
         this.noteSelected = true;
     }
     SaveAttendanceChange(): void {
-        for (let studentSession of this.studentSessionsRepo) {
-            this.studentService.updateStudentSession(studentSession).subscribe(data => {
-                if (data && typeof data.errmsg !== 'undefined') {
-                    this.notiService.alert(`${data.errmsg}`);
-                } else {
-                    this.notiService.success(`Update Attendance for ${studentSession.student.firstName} ${studentSession.student.lastName}`);
-                }
-            });
-        }
+        let count: number = this.studentSessionsRepo.length;
+        let observableBatch = [];
+        this.studentSessionsRepo.forEach((studentSession, key) => {
+            observableBatch.push(this.studentService.updateStudentSession(studentSession));
+        });
+        Observable.forkJoin(observableBatch).subscribe(data => {
+            this.notiService.success(`Update Attendance `);
+        });
     }
     SaveNote(): void {
         this.studentService.updateStudentSession(this.currentStudentSession).subscribe(data => {
