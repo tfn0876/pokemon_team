@@ -1,6 +1,8 @@
 export class GradeRule {
-    name: string;
-    requiredScore?: number;
-    letterGrade: string;
+    requiredScore?: number
+    letterGradeAbsenceNone?: string;;
+    letterGradeAbsenceOne?: string;
+    letterGradeAbsenceTwo?: string;
+    letterGradeAbsenceThreePlus?: string;
     editState?: boolean;
 }

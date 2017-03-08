@@ -1,5 +1,6 @@
 import { Attendance } from './attendance';
 import { GradeItem } from './grade-item';
+import { GradeRule } from './grade-rule';
 export class CourseSession {
     _id: any;
     course_id: any;
@@ -10,5 +11,6 @@ export class CourseSession {
     daysOftheWeek: number;
     attendanceTemplate?: Attendance[];
     gradeItems?: GradeItem[];
+    gradeRules?: GradeRule[];
     editState: boolean;
 }

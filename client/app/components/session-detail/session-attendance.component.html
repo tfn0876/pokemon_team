@@ -27,7 +27,7 @@
 <table *ngIf="loaded" class="dataTable border attendanceSheet">
     <thead>
         <tr>
-            <th class="name">STUDENT NAME</th>
+            <th class="name">STUDENT</th>
             <th *ngFor="let attendance of courseSession.attendanceTemplate" class="date">{{attendance.date | date : 'MM-dd'}}</th>
         </tr>
     </thead>

@@ -201,3 +201,13 @@ span.pull-right.mif-cancel {
     right: 5px;
     cursor: pointer;
 }
+
+table.bordered td, table.bordered th {
+    border-right: 1px solid;
+}
+table.bordered tr {
+    border-bottom: 1px solid;
+}
+table.bordered {
+    border: 1px solid;
+}

@@ -162,7 +162,8 @@ router.put('/session', function (req, res, next) {
             endDate: courseSession.endDate,
             daysOftheWeek: courseSession.daysOftheWeek,
             attendanceTemplate: courseSession.attendanceTemplate,
-            gradeItems: courseSession.gradeItems
+            gradeItems: courseSession.gradeItems,
+            gradeRules: courseSession.gradeRules
         };
         db.courseSessions.update({
             _id: mongojs.ObjectId(courseSession._id)

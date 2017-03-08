@@ -7,6 +7,7 @@ import { CourseSession } from '../../../model/course-session';
 import { Student } from '../../../model/student';
 import { Attendance } from '../../../model/attendance';
 import { GradeItem } from '../../../model/grade-item';
+import { GradeRule } from '../../../model/grade-rule';
 import { StudentSession } from '../../../model/studentSession';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -24,11 +25,14 @@ export class SessionSettingComponent implements OnInit {
     studentSessions: StudentSession[];
     studentSessionsRepo: StudentSession[];
     gradeItems: GradeItem[];
+    gradeRules: GradeRule[];
     filter: string;
     loaded: boolean;
     newGradeItem: GradeItem;
+    newGradeRule: GradeRule;
     attendanceSaveHidden: boolean;
     gradeItemAdd: boolean;
+    gradeRuleAdd: boolean;
     constructor(
         private route: ActivatedRoute,
         private courseService: CourseService,
@@ -37,9 +41,11 @@ export class SessionSettingComponent implements OnInit {
         private notiService: NotificationService) {
         this.loaded = false;
         this.gradeItemAdd = false;
+        this.gradeRuleAdd = false;
         this.attendanceSaveHidden = true;
         this.attendances = [];
         this.gradeItems = [];
+        this.gradeRules = [];
         this.newGradeItem = null;
     }
     ngOnInit(): void {
@@ -63,13 +69,24 @@ export class SessionSettingComponent implements OnInit {
                 } else {
                     this.gradeItems = [];
                 }
+                if (this.courseSession.gradeRules) {
+                    this.gradeRules = this.courseSession.gradeRules;
+                } else {
+                    this.gradeRules = [];
+                }
                 this.students = data[1];
                 this.studentSessionsRepo = data[2];
                 this.studentSessions = [];
                 this.loaded = true;
             });
     }
-
+    getPercent(gradeRule: GradeRule): number {
+        if (gradeRule.requiredScore && this.getTotal() !== 0) {
+            return gradeRule.requiredScore / this.getTotal();
+        } else {
+            return 0;
+        }
+    }
     emptyAttendance(): void {
         while (this.attendances.length > 0) {
             this.attendances.pop();
@@ -106,14 +123,23 @@ export class SessionSettingComponent implements OnInit {
         this.gradeItemAdd = false;
         this.newGradeItem = null;
     }
-    calTotal(): string {
-        if (this.gradeItems) {        
-            return `(Total Scores: ${this.getTotal()})`;
-        }else {
-            return `Total: 0`;
-        }   
+
+    calAttendance(): string {
+        if (this.attendances && this.attendances.length > 0) {
+            let holidayDays: number = this.attendances.filter((elem, index, arr) => elem.isHoliday).length;
+            return `(Total Items: ${this.attendances.length}, Holidays: ${holidayDays})`;
+        } else {
+            return `(No Attendance Template)`;
+        }
     }
-    getTotal(){
+    calTotal(): string {
+        if (this.gradeItems) {
+            return `(Total Scores: ${this.getTotal()})`;
+        } else {
+            return `(Total Scores: 0)`;
+        }
+    }
+    getTotal() {
         return this.gradeItems.map(gradeItem => gradeItem.fullScore).reduce(function (total, number) { return total + number; }, 0);
     }
     generateAttence(): void {
@@ -195,5 +221,81 @@ export class SessionSettingComponent implements OnInit {
                 }
             }
         );
+    }
+
+    editGradeRule(gradeRule: GradeRule): void {
+        if (gradeRule.editState) {
+            gradeRule.editState = !gradeRule.editState;
+        } else {
+            gradeRule.editState = true;
+        }
+
+    }
+
+    deleteGradeRule(gradeRule: GradeRule): void {
+        for (var i = 0; i < this.gradeItems.length; i++) {
+            if (this.gradeRules[i] === gradeRule) {
+                this.gradeRules.splice(i, 1);
+                this.courseSession.gradeRules = this.gradeRules;
+                this.courseService.updateCourseSession(this.courseSession).subscribe(
+                    data => {
+                        if (data && typeof data.errmsg !== 'undefined') {
+                            this.notiService.alert(`${data.errmsg}`);
+                        } else {
+                            this.notiService.success(`Delete Grade Item ${gradeRule.requiredScore} `);
+                        }
+                    }
+                );
+            }
+        }
+    }
+    updateGradeRule(gradeRule: GradeRule): void {
+        gradeRule.editState = false;
+        this.courseSession.gradeRules = this.gradeRules;
+        this.courseService.updateCourseSession(this.courseSession).subscribe(
+            data => {
+                if (data && typeof data.errmsg !== 'undefined') {
+                    this.notiService.alert(`${data.errmsg}`);
+                } else {
+                    this.notiService.success(`Save Grade Rules Change `);
+                }
+            }
+        );
+    }
+
+    addGradeRule(): void {
+        this.gradeRuleAdd = true;
+        this.newGradeRule = { editState: false, requiredScore: 0 };
+    }
+    saveGradeRule(): void {
+        if (this.newGradeRule.requiredScore) {
+            this.gradeRules.push(this.newGradeRule);
+            this.gradeRuleAdd = false;
+            this.courseSession.gradeRules = this.gradeRules;
+            this.courseService.updateCourseSession(this.courseSession).subscribe(
+                data => {
+                    if (data && typeof data.errmsg !== 'undefined') {
+                        this.notiService.alert(`${data.errmsg}`);
+                    } else {
+                        this.notiService.success(`Save Grade Items Change `);
+                    }
+                }
+            );
+        } else {
+            this.notiService.alert(`Please fill in all information`);
+        }
+        this.gradeItemAdd = false;
+        this.newGradeRule = null;
+    }
+    cancelGradeRule(): void {
+        this.gradeRuleAdd = false;
+        this.newGradeRule = null;
+    }
+    calcRules(): string {
+        if(this.gradeRules) {
+            return `(Total Items: ${this.gradeRules.length})`;
+        }else {
+            return "";
+        }
     }
 }
