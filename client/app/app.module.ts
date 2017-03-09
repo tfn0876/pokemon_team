@@ -14,6 +14,7 @@ import { RegisterStudentComponent } from './components/session-detail/register-s
 import { CurrentStudentsComponent } from './components/session-detail/current-students.component';
 import { SessionSettingComponent } from './components/session-detail/session-setting.component';
 import { SessionAttendanceComponent } from './components/session-detail/session-attendance.component';
+import { SessionGradingComponent } from './components/session-detail/session-grading.component';
 import { TruncatePipe } from './pipe/truncate';
 import { DayOfWeekPipe } from './pipe/dayofweek'
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
     SessionSettingComponent,
     SessionDetailComponent, 
     SessionAttendanceComponent,
+    SessionGradingComponent,
     TruncatePipe, 
     DayOfWeekPipe
     ],

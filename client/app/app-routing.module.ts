@@ -10,6 +10,7 @@ import { RegisterStudentComponent } from './components/session-detail/register-s
 import { CurrentStudentsComponent } from './components/session-detail/current-students.component';
 import { SessionSettingComponent } from './components/session-detail/session-setting.component';
 import { SessionAttendanceComponent } from './components/session-detail/session-attendance.component';
+import { SessionGradingComponent } from './components/session-detail/session-grading.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'currentStudents', component: CurrentStudentsComponent },
       { path: 'setting', component: SessionSettingComponent },
       { path: 'attendance', component: SessionAttendanceComponent },
+      { path: 'grading', component: SessionGradingComponent },
     ]
   },
   { path: 'students', component: StudentComponent }

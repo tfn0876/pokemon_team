@@ -21,6 +21,7 @@ body {
 
 #cell-content {
     flex-basis: calc(100% - 52px);
+    overflow: scroll;
 }
 
 .dataTable th,
@@ -165,7 +166,7 @@ table .register {
 }
 
 table.attendanceSheet .name {
-    width: 20px;
+    width: 150px;
 }
 
 table.attendanceSheet .date {
@@ -210,4 +211,26 @@ table.bordered tr {
 }
 table.bordered {
     border: 1px solid;
+}
+.gradeSheet .name{
+    width: 150px;
+}
+
+.gradeSheet .gradeItem{
+    width: 12%;
+}
+
+.gradeSheet .absence{
+    width: 5%;
+}
+.gradeSheet .total{
+    width: 5%;
+}
+.gradeSheet .manage{
+    width: 5%;
+}
+nav span.icon {
+    top: -2px;
+    left: -3px;
+    position: relative;
 }

@@ -1,0 +1,40 @@
+<table *ngIf="loaded" class="dataTable border gradeSheet">
+    <thead>
+        <tr>
+            <th class="name">STUDENT</th>
+            <th *ngFor="let gradeItem of courseSession.gradeItems" class="gradeItem">{{gradeItem.name}}({{gradeItem.fullScore}})</th>
+            <th class="absence">ABSENCE</th>
+            <th class="total">TOTAL</th>
+            <th class="manage">MANAGE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let studentSession of studentSessions">
+            <td class="name">
+                {{studentSession.student.firstName}} {{studentSession.student.lastName}}
+            </td>
+            <td *ngFor="let gradeItem of studentSession.gradeItems" class="gradeItem">
+                <span [hidden]="studentSession.editState || !gradeItem.score"> {{gradeItem.score}} out of {{gradeItem.fullScore}}</span>
+                <span [hidden]="!studentSession.editState"> {{gradeItem.name}}({{gradeItem.fullScore}})</span>
+                <input [hidden]="!studentSession.editState" type="text" [(ngModel)]="gradeItem.score" name="score" class="form-control" placeholder="Edit score...">
+            </td>
+            <td class="absence">
+                <p><span>{{getAbsence(studentSession)}}</span></p>
+            </td>
+            <td class="total">
+                <span [hidden]="studentSession.editState">{{studentSession.finalGrade}}</span>
+                <input [hidden]="!studentSession.editState" type="text" [(ngModel)]="studentSession.finalGrade" name="score" class="form-control"
+                    placeholder="Edit Total...">
+            </td>
+            <td class="manage">
+                <span [hidden]="studentSession.editState">  
+                    <a class="button primary" type="button" (click)="editGrade(studentSession)">Edit</a>
+                </span>
+                <span [hidden]="!studentSession.editState">                  
+                    <a class="button primary" type="button" (click)="updateGrade(studentSession)">Save</a>
+                    <a class="button danger" type="button" (click)="editGrade(studentSession)">Cancel</a>
+               </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
