@@ -1,0 +1,240 @@
+html,
+body {
+    height: 100%;
+}
+
+.page-content {
+    padding-top: 3.125rem;
+    min-height: 100%;
+    height: 100%;
+}
+
+.table .input-control.checkbox {
+    line-height: 1;
+    min-height: 0;
+    height: auto;
+}
+
+#cell-sidebar {
+    flex-basis: 52px;
+}
+
+#cell-content {
+    flex-basis: calc(100% - 52px);
+    overflow: scroll;
+}
+
+.dataTable th,
+.dataTable td {
+    padding: 0.125rem 0.625rem !important;
+}
+
+.dataTable tbody::-webkit-scrollbar-thumb {
+    background-color: #5a5f65;
+}
+
+.dataTable tbody::-webkit-scrollbar {
+    width: 5px;
+}
+
+.dataTable tbody::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.dataTable tbody::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.dataTable tbody::-webkit-scrollbar-thumb {
+    background-color: #5a5f65;
+}
+
+.dataTable tbody::-webkit-scrollbar {
+    width: 5px;
+}
+
+.dataTable tbody {
+    overflow-y: scroll;
+    height: 400px;
+    position: absolute;
+    width: calc(100% - 1px);
+    border-bottom: 1px solid #c0c0c0 !important;
+    border-left: 1px solid #c0c0c0 !important;
+    border-right: 1px solid #c0c0c0 !important;
+}
+
+.dataTable td {
+    border-right: #afa9a9 1px solid;
+    border-bottom: #afa9a9 1px solid;
+}
+
+.dataTable tbody tr {
+    width: 100%;
+    display: inline-table;
+}
+
+table.dataTable {
+    position: relative;
+}
+
+td.title,
+th.title {
+    width: 15%;
+}
+
+td.code,
+th.code {
+    width: 15%;
+}
+
+td.duration,
+th.duration {
+    width: 30%;
+}
+
+td.daysOftheWeek,
+th.daysOftheWeek {
+    width: 20%;
+}
+
+td.manage,
+th.manage {
+    width: 20%;
+}
+
+td.description,
+th.description {
+    width: 50%;
+}
+
+.input-control.text,
+.input-control.select,
+.input-control.file,
+.input-control.password,
+.input-control.number,
+.input-control.email,
+.input-control.tel {
+    width: 100% !important;
+}
+
+table .active {
+    width: 10%;
+}
+
+table .firstName {
+    width: 20%;
+}
+
+table .lastName {
+    width: 20%;
+}
+
+table .email {
+    width: 20%;
+}
+
+table .phone {
+    width: 20%;
+}
+
+table .register {
+    width: 10%;
+}
+
+.sessionManage a.active {
+    background-color: #2086bf;
+    color: white;
+}
+
+.sessionManage a:hover {
+    background-color: lightskyblue;
+    color: white;
+}
+
+.button.loading-pulse {
+    position: relative;
+}
+
+.button:disabled,
+.button.disabled {
+    background-color: #eaeaea !important;
+    color: #bebebe !important;
+    cursor: default;
+    border-color: transparent;
+}
+
+table.attendanceSheet .name {
+    width: 150px;
+}
+
+table.attendanceSheet .date {
+    width: 5%;
+}
+
+table.attendanceSheet .date.holiday {
+    background-color: #eaeaea !important;
+    color: #bebebe !important;
+}
+
+button.button.hasNote {
+    color: red !important;
+}
+.stickyNote {
+    display: block;
+    width: 300px;
+    position: absolute;
+    top: 10%;
+    background-color: #f9ef89;
+    right: 10%;
+    padding: 5px;
+    height: 300px;
+    z-index: 1000;
+}
+
+.stickyNote textarea {
+    background-color: #f9ef89;
+}
+
+span.pull-right.mif-cancel {
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+}
+
+table.bordered td, table.bordered th {
+    border-right: 1px solid;
+}
+table.bordered tr {
+    border-bottom: 1px solid;
+}
+table.bordered {
+    border: 1px solid;
+}
+.gradeSheet .name{
+    width: 150px;
+}
+
+.gradeSheet .gradeItem{
+    width: 12%;
+}
+
+.gradeSheet .absence{
+    width: 7%;
+}
+.gradeSheet .total{
+    width: 12%;
+}
+
+.gradeSheet .gradeItem input, .gradeSheet .total input{
+    width: 90%;
+}
+.gradeSheet .manage{
+    width: 13%;
+}
+nav span.icon {
+    top: -2px;
+    left: -3px;
+    position: relative;
+}

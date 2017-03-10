@@ -1,60 +1,106 @@
 import { Component } from '@angular/core';
-import {CourseService} from '../../services/course.service';
-import {Course} from '../../../model/course';
-
+import { CourseService } from '../../services/course.service';
+import { NotificationService } from '../../services/notification.service';
+import { Course } from '../../../model/course';
+import { TruncatePipe } from '../../Pipe/truncate';
 @Component({
-  moduleId: module.id,
-  selector: 'courses',
-  templateUrl: 'courses.component.html',
-  providers: [CourseService]
+    moduleId: module.id,
+    selector: 'courses',
+    templateUrl: 'courses.component.html',
+    providers: [CourseService, NotificationService]
 })
-export class CoursesComponent { 
+export class CoursesComponent {
     courses: Course[];
-    title: string;
-    code: string;
-    constructor(private courseService:CourseService){
+    courseRepo: Course[];
+    filter: string;
+    table: any;
+    newCourse: Course;
+    constructor(private courseService: CourseService,
+        private notiService: NotificationService) {
         this.courseService.getCourses()
             .subscribe(courses => {
                 this.courses = courses;
+                this.courseRepo = [];
+                for (let c of this.courses) {
+                    this.courseRepo.push(c);
+                }
             });
     }
-    
-    addCourse(event){
-        event.preventDefault();
-        var newCourse = {
-            title: this.title,
-            code: this.code
+    refreshNewCourse() {
+        this.newCourse = {
+            editState: true,
+            title: "",
+            _id: "",
+            code: "",
+            description: ""
+        };
+    }
+    addNewCourse() {
+        this.emptyCourse();
+        this.refreshNewCourse();
+        this.courses.push(this.newCourse);
+        this.notiService.info("Add Mode");
+    }
+    emptyCourse() {
+        while (this.courses.length > 0) {
+            this.courses.pop();
         }
-        
-        this.courseService.addCourse(newCourse)
-            .subscribe(course => {
-                this.courses.push(course);
-                this.title = '';
-            });
     }
-    
-    deleteCourse(id){
-        var courses = this.courses;     
-        this.courseService.deleteCourse(id).subscribe(data => {
-            if(data.n == 1){
-                for(var i = 0;i < courses.length;i++){
-                    if(courses[i]._id == id){
+    applyfilter() {
+        this.emptyCourse();
+        for (let entry of this.courseRepo) {
+            if (this.filter) {
+                if ((entry.title && entry.title.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)
+                    || (entry.code && entry.code.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0)
+                ) {
+                    this.courses.push(entry);
+                }
+            } else {
+                this.courses.push(entry);
+            }
+        }
+    }
+    deleteCourse(course: Course) {
+        var courses = this.courseRepo;
+        this.courseService.deleteCourse(course._id).subscribe(data => {
+            if (data.n == 1) {
+                for (var i = 0; i < courses.length; i++) {
+                    if (courses[i]._id == course._id) {
                         courses.splice(i, 1);
+                        this.notiService.success(`Deleted Course ${course.title}`);
+                        this.applyfilter();
                     }
                 }
             }
         });
     }
-    
-    updateStatus(course){
+    editCourse(course) {
+        course.editState = !course.editState;
+        this.applyfilter();
+    }
+    updateCourse(course) {
         var _course = {
-            _id:course._id,
             title: course.title,
-            code: course.code
+            code: course.code,
+            description: course.description
         };
-        
-        this.courseService.updateStatus(_course).subscribe(data => {
-            // update course sucessfully
-        });
+        if (course._id) {
+            this.courseService.updateCourse(course).subscribe(data => {
+                // update course sucessfully
+                if (data && typeof data.errmsg !== 'undefined') {
+                    // console.log(data.errmsg);
+                    this.notiService.alert(`Saved Course ${data.errmsg}`);
+                }
+                course.editState = !course.editState;
+                this.notiService.success(`Saved Course ${course.title}`);
+            });
+        } else {
+            this.courseService.addCourse(course)
+                .subscribe(course => {
+                    this.courseRepo.push(course);
+                    this.applyfilter();
+                    this.notiService.success(`Added Course ${course.title}`);
+                });
+        }
     }
 }
