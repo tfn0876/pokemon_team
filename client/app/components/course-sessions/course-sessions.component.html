@@ -70,9 +70,9 @@
             </td>
             <td class="manage">
                 <span [hidden]="session.editState">  
-                    <a class="button primary" type="button" (click)="editCourseSession(session)">edit</a>
+                    <a class="button primary" type="button" (click)="editCourseSession(session)">Edit</a>
                     <a class="button info" type="button" [routerLink]="['/session-detail', session._id]">Detail</a>
-                    <input class="button danger" type="button" (click)="deleteCourseSession(session._id)" value="Delete">
+                    <a class="button danger" type="button" (click)="deleteCourseSession(session)">Delete</a>
                 </span>
                 <span [hidden]="!session.editState">                  
                     <a class="button primary" type="button" (click)="updateCourseSession(session)">Save</a>

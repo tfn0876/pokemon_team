@@ -12,14 +12,26 @@ import { SessionDetailComponent } from './components/session-detail/session.comp
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterStudentComponent } from './components/session-detail/register-student.component';
 import { CurrentStudentsComponent } from './components/session-detail/current-students.component';
+import { SessionSettingComponent } from './components/session-detail/session-setting.component';
+import { SessionAttendanceComponent } from './components/session-detail/session-attendance.component';
+import { SessionGradingComponent } from './components/session-detail/session-grading.component';
 import { TruncatePipe } from './pipe/truncate';
 import { DayOfWeekPipe } from './pipe/dayofweek'
 import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule],
-  declarations: [AppComponent, CoursesComponent, StudentComponent,
-    DashboardComponent, CourseSessionComponent, RegisterStudentComponent, CurrentStudentsComponent,
-    SessionDetailComponent, TruncatePipe, DayOfWeekPipe],
+  declarations: [
+    AppComponent, CoursesComponent, StudentComponent,
+    DashboardComponent, CourseSessionComponent,
+    RegisterStudentComponent,
+    CurrentStudentsComponent,
+    SessionSettingComponent,
+    SessionDetailComponent, 
+    SessionAttendanceComponent,
+    SessionGradingComponent,
+    TruncatePipe, 
+    DayOfWeekPipe
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

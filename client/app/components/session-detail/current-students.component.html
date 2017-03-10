@@ -1,5 +1,8 @@
 <div class="grid">
     <div class="row cells12 flex-just-end">
+        <div *ngIf="loaded" class="cell offset7 colspan1">
+            <a class="button primary" type="button" href="mailto:{{emailsAll}}"><span class="mif-mail"></span>EMAIL</a>
+        </div>
         <div class="cell colspan2">
             <div class="input-control text">
                 <label>Filter</label>
@@ -33,7 +36,7 @@
             </td>
             <td class="email">
                 <a href="mailto:{{studentSession.student.email}}?Subject=Sent%20From%20Students%20Tool">
-                <span class="mif-mail"> {{studentSession.student.email}} </span>
+                    <span class="mif-mail"> {{studentSession.student.email}} </span>
                 </a>
             </td>
             <td class="phone">

@@ -60,14 +60,14 @@ export class CoursesComponent {
             }
         }
     }
-    deleteCourse(id) {
+    deleteCourse(course: Course) {
         var courses = this.courseRepo;
-        this.courseService.deleteCourse(id).subscribe(data => {
+        this.courseService.deleteCourse(course._id).subscribe(data => {
             if (data.n == 1) {
                 for (var i = 0; i < courses.length; i++) {
-                    if (courses[i]._id == id) {
+                    if (courses[i]._id == course._id) {
                         courses.splice(i, 1);
-                        this.notiService.success(`Deleted Course ${courses[i].title}`);
+                        this.notiService.success(`Deleted Course ${course.title}`);
                         this.applyfilter();
                     }
                 }

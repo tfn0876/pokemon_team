@@ -23,6 +23,7 @@ export class CurrentStudentsComponent implements OnInit {
     studentSessionsRepo: StudentSession[];
     filter: string;
     loaded: boolean;
+    emailsAll: string;
     constructor(
         private route: ActivatedRoute,
         private courseService: CourseService,
@@ -50,9 +51,11 @@ export class CurrentStudentsComponent implements OnInit {
     }
 
     bindStudentsWithStudentSession(): void {
+        this.emailsAll = "";
         for (let studentSession of this.studentSessionsRepo) {
             studentSession.student = this.students.find(student => student._id == studentSession.student_id);
             this.studentSessions.push(studentSession);
+            this.emailsAll += studentSession.student.email + ",";
         }
     }
     applyfilter(): void {

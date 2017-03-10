@@ -76,7 +76,6 @@ router.put('/course', function (req, res, next) {
             if (err) {
                 res.send(err);
             }
-            console.log(course);
             res.json(course);
         });
     } else {
@@ -140,7 +139,7 @@ router.post('/session', function (req, res, next) {
 });
 
 // delete single course session
-router.delete('/sesson/:id', function (req, res, next) {
+router.delete('/session/:id', function (req, res, next) {
     db.courseSessions.remove({
         _id: mongojs.ObjectId(req.params.id)
     }, function (err, courseSession) {
@@ -161,13 +160,15 @@ router.put('/session', function (req, res, next) {
             professor: courseSession.professor,
             startDate: courseSession.startDate,
             endDate: courseSession.endDate,
-            daysOftheWeek: courseSession.daysOftheWeek
+            daysOftheWeek: courseSession.daysOftheWeek,
+            attendanceTemplate: courseSession.attendanceTemplate,
+            gradeItems: courseSession.gradeItems,
+            gradeRules: courseSession.gradeRules
         };
         db.courseSessions.update({
             _id: mongojs.ObjectId(courseSession._id)
         }, _courseSessoin, {}, function (err, courseSession) {
             if (err) {
-                console.log(err);
                 res.send(err);
             }
             res.json(courseSession);
@@ -253,7 +254,6 @@ router.put('/student', function (req, res, next) {
         db.students.update({
             _id: mongojs.ObjectId(student._id)
         }, _student, {}, function (err, student) {
-            console.log(student);
             if (err) {
                 res.send(err);
             }
@@ -309,7 +309,6 @@ router.post('/student-session', function (req, res, next) {
             dropClass: studentSession.dropClass
         };
         db.studentSessions.save(_studentSessoin, function (err, studentSession) {
-            console.log(studentSession);
             if (err) {
                 res.send(err);
             }
@@ -323,7 +322,6 @@ router.delete('/student-session/:id', function (req, res, next) {
     db.studentSessions.remove({
         _id: mongojs.ObjectId(req.params.id)
     }, function (err, studentSession) {
-        console.log(studentSession);
         if (err) {
             res.send(err);
         }
@@ -337,13 +335,15 @@ router.put('/student-session', function (req, res, next) {
     var _studentSession = {
         student_id: mongojs.ObjectId(studentSession.student_id),
         courseSession_id: mongojs.ObjectId(studentSession.courseSession_id),
-        dropClass: studentSession.dropClass
+        dropClass: studentSession.dropClass,
+        attendance: studentSession.attendance,
+        gradeItems: studentSession.gradeItems,
+        finalGrade: studentSession.finalGrade
     };
     if (_studentSession && studentSession.student_id && studentSession.courseSession_id) {
         db.studentSessions.update({
             _id: mongojs.ObjectId(studentSession._id)
         }, _studentSession, {}, function (err, studentSession) {
-            console.log(studentSession);
             if (err) {
                 res.send(err);
             }

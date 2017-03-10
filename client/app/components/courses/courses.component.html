@@ -47,7 +47,7 @@
                 <span [hidden]="course.editState">  
                     <a class="button primary" type="button" (click)="editCourse(course)">edit</a>
                     <a class="button info" type="button" [routerLink]="['/course-detail', course._id]">Detail</a>
-                    <input class="button danger" type="button" (click)="deleteCourse(course._id)" value="Delete">
+                    <input class="button danger" type="button" (click)="deleteCourse(course)" value="Delete">
                 </span>
                 <span [hidden]="!course.editState">                  
                     <a class="button primary" type="button" (click)="updateCourse(course)">Save</a>
