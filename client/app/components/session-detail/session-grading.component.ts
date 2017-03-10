@@ -26,7 +26,9 @@ export class SessionGradingComponent implements OnInit {
     studentSessionsRepo: StudentSession[];
     filter: string;
     loaded: boolean;
-    noteSelected: boolean;
+    totalDigit: boolean;
+    totalPercent: boolean;
+    totalLetter: boolean;
     currentAttendance: Attendance;
     currentStudentSession: StudentSession;
     constructor(
@@ -36,7 +38,7 @@ export class SessionGradingComponent implements OnInit {
         private location: Location,
         private notiService: NotificationService) {
         this.loaded = false;
-        this.noteSelected = false;
+        this.totalLetter = true;
     }
 
     ngOnInit(): void {
@@ -112,6 +114,74 @@ export class SessionGradingComponent implements OnInit {
         }
         return `${num}`;
     }
+    calcTotalDigit(studentSession: StudentSession): number {
+        return studentSession.gradeItems.map(gradeItem => gradeItem.score).reduce(function (total, num) { return total + Math.floor(num); }, 0);
+    }
+
+    getTotal(): number {
+        return this.courseSession.gradeItems.map(gradeItem => gradeItem.fullScore).reduce(function (total, number) { return total + number; }, 0);
+    }
+    calcTotalPercent(studentSession: StudentSession): number {
+        if (this.getTotal() !== 0) {
+            return this.calcTotalDigit(studentSession) / this.getTotal();
+        } else {
+            return 0;
+        }
+    }
+
+    calcuateLetter(): void {
+        this.studentSessions.forEach((studentSession, index, array) => {
+            if (this.courseSession.gradeRules && this.courseSession.gradeRules.length > 0) {
+                let hasSet: boolean = false;
+                let graderules: GradeRule[] = this.courseSession.gradeRules.sort((a, b) => a.requiredScore - b.requiredScore);
+                graderules.forEach((graderule, index, array) => {
+                    let absence: number = 0;
+                    if (studentSession.attendance) {
+                        absence = studentSession.attendance.filter(attendance => !attendance.isHoliday && !attendance.attended).length;
+                    }
+                    if (this.calcTotalDigit(studentSession) >= graderule.requiredScore) {
+                        hasSet = true;
+                        switch (absence) {
+                            case 0:
+                                studentSession.finalGrade = graderule.letterGradeAbsenceNone;
+                                break;
+                            case 1:
+                                studentSession.finalGrade = graderule.letterGradeAbsenceOne;
+                                break;
+                            case 2:
+                                studentSession.finalGrade = graderule.letterGradeAbsenceTwo;
+                                break;
+                            case 3:
+                                studentSession.finalGrade = graderule.letterGradeAbsenceThreePlus;
+                                break;
+                            default:
+                                studentSession.finalGrade = graderule.letterGradeAbsenceThreePlus;
+                                break;
+                        }
+                    }
+                });
+                if (!hasSet) {
+                    return studentSession.finalGrade = 'Fail';
+                }
+            }
+        });
+    }
+
+    ResetGrading(): void {
+        if (!this.studentSessionsRepo) {
+            this.notiService.warning(`No students registered yet`);
+            return;
+        }
+        if (this.courseSession.gradeItems) {
+            for (let studentSession of this.studentSessionsRepo) {
+                studentSession.gradeItems = <GradeItem[]>JSON.parse(JSON.stringify(this.courseSession.gradeItems));
+            }
+            this.SaveGradingChange();
+        } else {
+            this.notiService.warning(`Course Session Attendance Template not been set yet`);
+        }
+    }
+
     RefreshStudentSessionGrading(): void {
         if (!this.studentSessionsRepo) {
             this.notiService.warning(`No students registered yet`);

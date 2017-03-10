@@ -221,13 +221,17 @@ table.bordered {
 }
 
 .gradeSheet .absence{
-    width: 5%;
+    width: 7%;
 }
 .gradeSheet .total{
-    width: 5%;
+    width: 12%;
+}
+
+.gradeSheet .gradeItem input, .gradeSheet .total input{
+    width: 90%;
 }
 .gradeSheet .manage{
-    width: 5%;
+    width: 13%;
 }
 nav span.icon {
     top: -2px;

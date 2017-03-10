@@ -139,7 +139,7 @@ router.post('/session', function (req, res, next) {
 });
 
 // delete single course session
-router.delete('/sesson/:id', function (req, res, next) {
+router.delete('/session/:id', function (req, res, next) {
     db.courseSessions.remove({
         _id: mongojs.ObjectId(req.params.id)
     }, function (err, courseSession) {

@@ -139,7 +139,7 @@ export class SessionSettingComponent implements OnInit {
             return `(Total Scores: 0)`;
         }
     }
-    getTotal() {
+    getTotal(): number {
         return this.gradeItems.map(gradeItem => gradeItem.fullScore).reduce(function (total, number) { return total + number; }, 0);
     }
     generateAttence(): void {
@@ -292,9 +292,9 @@ export class SessionSettingComponent implements OnInit {
         this.newGradeRule = null;
     }
     calcRules(): string {
-        if(this.gradeRules) {
+        if (this.gradeRules) {
             return `(Total Items: ${this.gradeRules.length})`;
-        }else {
+        } else {
             return "";
         }
     }

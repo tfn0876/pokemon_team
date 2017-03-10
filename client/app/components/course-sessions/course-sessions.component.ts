@@ -85,14 +85,14 @@ export class CourseSessionComponent implements OnInit {
             }
         }
     }
-    deleteCourseSession(id) {
+    deleteCourseSession(courseSession: CourseSession) {
         var courseSessions = this.courseSessionRepo;
-        this.courseService.deleteCourse(id).subscribe(data => {
+        this.courseService.deleteCourseSession(courseSession._id).subscribe(data => {
             if (data.n == 1) {
                 for (var i = 0; i < courseSessions.length; i++) {
-                    if (courseSessions[i]._id == id) {
+                    if (courseSessions[i]._id == courseSession._id) {
                         courseSessions.splice(i, 1);
-                        this.notiService.success(`Deleted Course Session ${courseSessions[i].name}`);
+                        this.notiService.success(`Deleted Course Session ${courseSession.name}`);
                         this.applyfilter();
                     }
                 }
