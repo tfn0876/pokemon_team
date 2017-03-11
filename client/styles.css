@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    overflow: hidden;
 }
 
 .page-content {
@@ -24,89 +25,9 @@ body {
     overflow: scroll;
 }
 
-.dataTable th,
-.dataTable td {
-    padding: 0.125rem 0.625rem !important;
-}
-
-.dataTable tbody::-webkit-scrollbar-thumb {
-    background-color: #5a5f65;
-}
-
-.dataTable tbody::-webkit-scrollbar {
-    width: 5px;
-}
-
-.dataTable tbody::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-}
-
-.dataTable tbody::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-}
-
-.dataTable tbody::-webkit-scrollbar-thumb {
-    background-color: #5a5f65;
-}
-
-.dataTable tbody::-webkit-scrollbar {
-    width: 5px;
-}
-
-.dataTable tbody {
-    overflow-y: scroll;
-    height: 400px;
-    position: absolute;
-    width: calc(100% - 1px);
-    border-bottom: 1px solid #c0c0c0 !important;
-    border-left: 1px solid #c0c0c0 !important;
-    border-right: 1px solid #c0c0c0 !important;
-}
-
 .dataTable td {
     border-right: #afa9a9 1px solid;
     border-bottom: #afa9a9 1px solid;
-}
-
-.dataTable tbody tr {
-    width: 100%;
-    display: inline-table;
-}
-
-table.dataTable {
-    position: relative;
-}
-
-td.title,
-th.title {
-    width: 15%;
-}
-
-td.code,
-th.code {
-    width: 15%;
-}
-
-td.duration,
-th.duration {
-    width: 30%;
-}
-
-td.daysOftheWeek,
-th.daysOftheWeek {
-    width: 20%;
-}
-
-td.manage,
-th.manage {
-    width: 20%;
-}
-
-td.description,
-th.description {
-    width: 50%;
 }
 
 .input-control.text,
