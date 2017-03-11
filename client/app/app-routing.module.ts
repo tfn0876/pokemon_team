@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { StudentComponent } from './components/student/student.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -8,10 +7,18 @@ import { CourseSessionComponent } from './components/course-sessions/course-sess
 import { SessionDetailComponent } from './components/session-detail/session.component';
 import { RegisterStudentComponent } from './components/session-detail/register-student.component';
 import { CurrentStudentsComponent } from './components/session-detail/current-students.component';
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {AuthGuard} from './guards/auth.guard';
+
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'courses', component: CoursesComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent,canActivate:[AuthGuard]},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard] },
+  { path: 'courses', component: CoursesComponent,canActivate:[AuthGuard] },
   { path: 'course-detail/:id', component: CourseSessionComponent },
   {
     path: 'session-detail/:id', component: SessionDetailComponent, children: [
@@ -20,7 +27,7 @@ const routes: Routes = [
       { path: 'currentStudents', component: CurrentStudentsComponent },
     ]
   },
-  { path: 'students', component: StudentComponent }
+  { path: 'students', component: StudentComponent,canActivate:[AuthGuard] }
 ];
 
 @NgModule({

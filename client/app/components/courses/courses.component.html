@@ -50,8 +50,8 @@
                     <input class="button danger" type="button" (click)="deleteCourse(course._id)" value="Delete">
                 </span>
                 <span [hidden]="!course.editState">                  
-                    <a class="button primary" type="button" (click)="updateCourse(course)">Save</a>
-                    <a class="button danger" type="button" (click)="editCourse(course)">Cancel</a>
+                <a class="button primary" type="button" (click)="updateCourse(course)">Save</a>
+                <a class="button danger" type="button" (click)="editCourse(course)">Cancel</a>
                 </span>
             </td>
         </tr>
