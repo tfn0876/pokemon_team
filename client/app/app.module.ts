@@ -3,13 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import {AuthGuard} from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './components/courses/courses.component';
-import { LoginComponent} from './components/login/login.component';
-import { RegisterComponent} from './components/register/register.component';
-import { ProfileComponent} from './components/profile/profile.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 import { StudentComponent } from './components/student/student.component';
@@ -25,33 +25,35 @@ import { SessionGradingComponent } from './components/session-detail/session-gra
 import { TruncatePipe } from './pipe/truncate';
 import { DayOfWeekPipe } from './pipe/dayofweek'
 import { AppRoutingModule } from './app-routing.module';
-import {ValidateService} from './services/validate.service';
-import {AuthService} from './services/auth.service';
-import {NavbarComponent} from './components/navbar/navbar.component';
-import {SidebarComponent} from './components/sidebar/sidebar.component';
+import { ValidateService } from './services/validate.service';
+import { AuthService } from './services/auth.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FileSelectDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 @NgModule({
   imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule],
   declarations: [
 
-      AppComponent,
-      CoursesComponent,
-      StudentComponent,
-      LoginComponent,
-      RegisterComponent,
-      ProfileComponent,
-      NavbarComponent,
-      SidebarComponent,
-      DashboardComponent,
-      CourseSessionComponent,
-      RegisterStudentComponent,
-      CurrentStudentsComponent,
-      SessionDetailComponent,
-      SessionAttendanceComponent,
-      SessionGradingComponent,
-      SessionSettingComponent,
-      TruncatePipe,
-      DayOfWeekPipe],
+    AppComponent,
+    CoursesComponent,
+    StudentComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    NavbarComponent,
+    SidebarComponent,
+    DashboardComponent,
+    CourseSessionComponent,
+    RegisterStudentComponent,
+    CurrentStudentsComponent,
+    SessionDetailComponent,
+    SessionAttendanceComponent,
+    SessionGradingComponent,
+    SessionSettingComponent,
+    TruncatePipe,
+    DayOfWeekPipe,
+    FileSelectDirective],
   bootstrap: [AppComponent],
-  providers:[ValidateService,AuthService,AuthGuard]
+  providers: [ValidateService, AuthService, AuthGuard]
 })
 export class AppModule { }

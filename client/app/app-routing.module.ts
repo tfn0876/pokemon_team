@@ -7,10 +7,10 @@ import { CourseSessionComponent } from './components/course-sessions/course-sess
 import { SessionDetailComponent } from './components/session-detail/session.component';
 import { RegisterStudentComponent } from './components/session-detail/register-student.component';
 import { CurrentStudentsComponent } from './components/session-detail/current-students.component';
-import {LoginComponent} from './components/login/login.component';
-import {RegisterComponent} from './components/register/register.component';
-import {ProfileComponent} from './components/profile/profile.component';
-import {AuthGuard} from './guards/auth.guard';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from './guards/auth.guard';
 
 import { SessionSettingComponent } from './components/session-detail/session-setting.component';
 import { SessionAttendanceComponent } from './components/session-detail/session-attendance.component';
@@ -19,11 +19,11 @@ import { SessionGradingComponent } from './components/session-detail/session-gra
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent,canActivate:[AuthGuard]},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard] },
-  { path: 'courses', component: CoursesComponent,canActivate:[AuthGuard] },
+  { path: 'courses', component: CoursesComponent, canActivate: [AuthGuard] },
   { path: 'course-detail/:id', component: CourseSessionComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   {
     path: 'session-detail/:id', component: SessionDetailComponent, children: [
       { path: '', redirectTo: 'currentStudents', pathMatch: 'full' },
@@ -34,7 +34,7 @@ const routes: Routes = [
       { path: 'grading', component: SessionGradingComponent },
     ]
   },
-  { path: 'students', component: StudentComponent,canActivate:[AuthGuard] }
+  { path: 'students', component: StudentComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
