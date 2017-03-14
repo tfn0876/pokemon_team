@@ -22,6 +22,7 @@ import { CurrentStudentsComponent } from './components/session-detail/current-st
 import { SessionSettingComponent } from './components/session-detail/session-setting.component';
 import { SessionAttendanceComponent } from './components/session-detail/session-attendance.component';
 import { SessionGradingComponent } from './components/session-detail/session-grading.component';
+import { SessionSyllabusComponent } from './components/session-detail/session-syllabus.component';
 import { TruncatePipe } from './pipe/truncate';
 import { DayOfWeekPipe } from './pipe/dayofweek'
 import { AppRoutingModule } from './app-routing.module';
@@ -29,11 +30,14 @@ import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { FileSelectDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { FileSelectDirective } from './components/fileupload/file-select.directive';
+import { FileDropDirective } from './components/fileupload/file-drop.directive';
+import { DialogComponent } from './components/upload-dialog/upload-dialog.component';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
+
 @NgModule({
   imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule],
   declarations: [
-
     AppComponent,
     CoursesComponent,
     StudentComponent,
@@ -52,7 +56,11 @@ import { FileSelectDirective, FileUploader } from 'ng2-file-upload/ng2-file-uplo
     SessionSettingComponent,
     TruncatePipe,
     DayOfWeekPipe,
-    FileSelectDirective],
+    FileSelectDirective,
+    FileDropDirective,
+    DialogComponent,
+    SessionSyllabusComponent,
+    PdfViewerComponent],
   bootstrap: [AppComponent],
   providers: [ValidateService, AuthService, AuthGuard]
 })

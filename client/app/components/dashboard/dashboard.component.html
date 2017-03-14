@@ -1,1 +1,6 @@
-<input type="file" ng2FileSelect [uploader]="uploader" />
+<button (click)="showDialog = !showDialog" class="btn">Open</button>
+
+<upload-dialog [(visible)]="showDialog">
+
+
+</upload-dialog>

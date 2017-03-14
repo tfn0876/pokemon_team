@@ -8,6 +8,7 @@ import { Student } from '../../../model/student';
 import { Attendance } from '../../../model/attendance';
 import { GradeItem } from '../../../model/grade-item';
 import { GradeRule } from '../../../model/grade-rule';
+import { CSFile } from '../../../model/cs-file';
 import { StudentSession } from '../../../model/studentSession';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -142,6 +143,14 @@ export class SessionSettingComponent implements OnInit {
     getTotal(): number {
         return this.gradeItems.map(gradeItem => gradeItem.fullScore).reduce(function (total, number) { return total + number; }, 0);
     }
+
+    CalcUpload(): string {
+        if (this.courseSession && this.courseSession.files) {
+            return ` (Total ITEMS: ${this.courseSession.files.length})`;
+        } else {
+            return "";
+        }
+    }
     generateAttence(): void {
         this.changeAttendance();
         this.emptyAttendance();
@@ -189,9 +198,19 @@ export class SessionSettingComponent implements OnInit {
         } else {
             gradeItem.editState = true;
         }
-
     }
-
+    changeIsSyllabus(file: CSFile): void {
+        this.courseService.updateCourseSession(this.courseSession).subscribe(
+            data => {
+                if (data && typeof data.errmsg !== 'undefined') {
+                    this.notiService.alert(`${data.errmsg}`);
+                } else {
+                    this.notiService.success(`Updated ${file.name} `);
+                }
+            }
+        );
+    }
+    
     deleteGradeItem(gradeItem: GradeItem): void {
         for (var i = 0; i < this.gradeItems.length; i++) {
             if (this.gradeItems[i] === gradeItem) {
@@ -297,5 +316,8 @@ export class SessionSettingComponent implements OnInit {
         } else {
             return "";
         }
+    }
+    deleteFile(): void {
+
     }
 }

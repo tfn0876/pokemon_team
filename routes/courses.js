@@ -128,7 +128,8 @@ router.post('/session', function (req, res, next) {
             professor: courseSession.professor,
             startDate: courseSession.startDate,
             endDate: courseSession.endDate,
-            daysOftheWeek: courseSession.daysOftheWeek
+            daysOftheWeek: courseSession.daysOftheWeek,
+            files: courseSession.files,
         };
         db.courseSessions.save(_courseSessoin, function (err, courseSession) {
             if (err) {
@@ -164,7 +165,8 @@ router.put('/session', function (req, res, next) {
             daysOftheWeek: courseSession.daysOftheWeek,
             attendanceTemplate: courseSession.attendanceTemplate,
             gradeItems: courseSession.gradeItems,
-            gradeRules: courseSession.gradeRules
+            gradeRules: courseSession.gradeRules,
+            files: courseSession.files,
         };
         db.courseSessions.update({
             _id: mongojs.ObjectId(courseSession._id)

@@ -1,4 +1,3 @@
-
 (function (global) {
   System.config({
     paths: {
@@ -22,7 +21,9 @@
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
       'angular2-jwt': 'node_modules/angular2-jwt/angular2-jwt.js',
-      'ng2-file-upload': 'npm:ng2-file-upload'
+      'ng2-file-upload': 'npm:ng2-file-upload',
+      'ng2-pdf-viewer': 'node_modules/ng2-pdf-viewer',
+      'pdfjs-dist': 'node_modules/pdfjs-dist'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -30,7 +31,9 @@
         main: './main.js',
         defaultExtension: 'js'
       },
-      'angular2-jwt': { "defaultExtension": 'js' },
+      'angular2-jwt': {
+        "defaultExtension": 'js'
+      },
       rxjs: {
         defaultExtension: 'js'
       },
@@ -39,6 +42,13 @@
       },
       'angular-in-memory-web-api': {
         main: './index.js',
+        defaultExtension: 'js'
+      },
+      'ng2-pdf-viewer': {
+        main: 'dist/index.js',
+        defaultExtension: 'js'
+      },
+      'pdfjs-dist': {
         defaultExtension: 'js'
       }
     }

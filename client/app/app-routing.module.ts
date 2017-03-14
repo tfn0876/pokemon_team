@@ -15,7 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { SessionSettingComponent } from './components/session-detail/session-setting.component';
 import { SessionAttendanceComponent } from './components/session-detail/session-attendance.component';
 import { SessionGradingComponent } from './components/session-detail/session-grading.component';
-
+import { SessionSyllabusComponent } from './components/session-detail/session-syllabus.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
@@ -32,6 +32,7 @@ const routes: Routes = [
       { path: 'setting', component: SessionSettingComponent },
       { path: 'attendance', component: SessionAttendanceComponent },
       { path: 'grading', component: SessionGradingComponent },
+      { path: 'syllabus', component: SessionSyllabusComponent}
     ]
   },
   { path: 'students', component: StudentComponent, canActivate: [AuthGuard] }
