@@ -37,6 +37,7 @@ export class SessionSyllabusComponent implements OnInit {
     gradeItemAdd: boolean;
     gradeRuleAdd: boolean;
     file: CSFile;
+    zoom: number;
     constructor(
         private route: ActivatedRoute,
         private courseService: CourseService,
@@ -51,6 +52,7 @@ export class SessionSyllabusComponent implements OnInit {
         this.gradeItems = [];
         this.gradeRules = [];
         this.newGradeItem = null;
+        this.zoom = 0.5;
     }
     ngOnInit(): void {
         this.route.parent.params

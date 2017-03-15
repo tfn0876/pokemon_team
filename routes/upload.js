@@ -14,6 +14,10 @@ var mime = require("mime");
 
 var DIR = './client/uploads/';
 
+if (!fs.existsSync(DIR)) {
+    fs.mkdirSync(DIR);
+}
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, DIR)

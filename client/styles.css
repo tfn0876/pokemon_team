@@ -223,6 +223,6 @@ progress {
   font-size: 1.2em;
 }
 #pdfview{
-    height: 700px;
-    overflow-y: scroll;
+    height: 600px;
+    overflow: scroll;
 }

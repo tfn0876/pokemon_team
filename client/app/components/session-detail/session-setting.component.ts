@@ -317,7 +317,20 @@ export class SessionSettingComponent implements OnInit {
             return "";
         }
     }
-    deleteFile(): void {
-
+    deleteFile(file: CSFile): void {
+        for (var i = 0; i < this.courseSession.files.length; i++) {
+            if (this.courseSession.files[i] === file) {
+                this.courseSession.files.splice(i, 1);
+                this.courseService.updateCourseSession(this.courseSession).subscribe(
+                    data => {
+                        if (data && typeof data.errmsg !== 'undefined') {
+                            this.notiService.alert(`${data.errmsg}`);
+                        } else {
+                            this.notiService.success(`Delete File ${file.name} `);
+                        }
+                    }
+                );
+            }
+        }
     }
 }
