@@ -210,7 +210,7 @@ export class SessionSettingComponent implements OnInit {
             }
         );
     }
-    
+
     deleteGradeItem(gradeItem: GradeItem): void {
         for (var i = 0; i < this.gradeItems.length; i++) {
             if (this.gradeItems[i] === gradeItem) {
@@ -320,6 +320,13 @@ export class SessionSettingComponent implements OnInit {
     deleteFile(file: CSFile): void {
         for (var i = 0; i < this.courseSession.files.length; i++) {
             if (this.courseSession.files[i] === file) {
+                this.courseService.deleteFile(this.courseSession._id, file.name).subscribe(
+                    data => {
+                        if (data.n == 1) {
+                            console.log(data);
+                        }
+                    }
+                );
                 this.courseSession.files.splice(i, 1);
                 this.courseService.updateCourseSession(this.courseSession).subscribe(
                     data => {

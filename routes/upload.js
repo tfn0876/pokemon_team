@@ -40,5 +40,16 @@ router.post('/upload/:id', upload.any(), function (req, res, next) {
     res.end('file uploaded');
 });
 
+// delete single student
+router.delete('/file/:name', function (req, res, next) {
+    var filePath = DIR + req.params.name;
+    fs.unlink(filePath, function (err) {
+        if (err) {
+            console.log(JSON.stringify(err));
+            res.end(JSON.stringify(err));
+        }
+    });
+     res.end('file deleted');
+});
 
 module.exports = router;
