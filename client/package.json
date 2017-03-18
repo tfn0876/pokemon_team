@@ -1,6 +1,9 @@
 {
   "name": "mytasklist",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.10.0"
+  },
   "scripts": {
     "start": "concurrently \"npm run tsc:w\" ",
     "lite": "lite-server",
