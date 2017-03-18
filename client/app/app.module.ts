@@ -30,10 +30,12 @@ import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { FileSelectDirective } from './components/fileupload/file-select.directive';
-import { FileDropDirective } from './components/fileupload/file-drop.directive';
+import { FileSelectDirective } from './utils/fileupload/file-select.directive';
+import { FileDropDirective } from './utils/fileupload/file-drop.directive';
 import { DialogComponent } from './components/upload-dialog/upload-dialog.component';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
+
+import { nvD3 } from './utils/ng2-nvd3/ng2-nvd3';
 
 @NgModule({
   imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule],
@@ -60,7 +62,8 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     FileDropDirective,
     DialogComponent,
     SessionSyllabusComponent,
-    PdfViewerComponent],
+    PdfViewerComponent,
+    nvD3],
   bootstrap: [AppComponent],
   providers: [ValidateService, AuthService, AuthGuard]
 })

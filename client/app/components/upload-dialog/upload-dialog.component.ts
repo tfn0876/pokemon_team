@@ -3,8 +3,8 @@ import {
   Component, OnInit, Input, Output, OnChanges, EventEmitter,
   trigger, state, style, animate, transition
 } from '@angular/core';
-import { FileUploader } from '../fileupload/file-uploader.class';
-import { FileItem } from '../fileupload/file-item.class';
+import { FileUploader } from '../../utils/fileupload/file-uploader.class';
+import { FileItem } from '../../utils/fileupload/file-item.class';
 import { NotificationService } from '../../services/notification.service';
 import { CourseService } from '../../services/course.service';
 import { Observable } from 'rxjs/Rx';

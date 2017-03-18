@@ -23,7 +23,10 @@
       'angular2-jwt': 'node_modules/angular2-jwt/angular2-jwt.js',
       'ng2-file-upload': 'npm:ng2-file-upload',
       'ng2-pdf-viewer': 'node_modules/ng2-pdf-viewer',
-      'pdfjs-dist': 'node_modules/pdfjs-dist'
+      'pdfjs-dist': 'node_modules/pdfjs-dist',
+      'd3': 'node_modules/d3',
+      'nvd3': 'node_modules/nvd3',
+      'ng2-nvd3': 'node_modules/ng2-nvd3'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -48,8 +51,21 @@
         main: 'dist/index.js',
         defaultExtension: 'js'
       },
+      'd3': {
+        main: 'build/d3.node.js',
+        format: global,
+        defaultExtension: 'js'
+      },
+      'nvd3': {
+        format: global
+      },
       'pdfjs-dist': {
         defaultExtension: 'js'
+      },
+      'ng2-nvd3': {
+        main: "build/lib/ng2-nvd3.js",
+        format: 'cjs',
+        defaultExtension: "js"
       }
     }
   });
