@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var courses = require('./routes/courses');
 var app = express();
-var port = 3000;
+var port = 8001;
 
 // view engine
 app.set('views', path.join(__dirname, 'views'));
