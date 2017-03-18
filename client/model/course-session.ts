@@ -1,6 +1,7 @@
 import { Attendance } from './attendance';
 import { GradeItem } from './grade-item';
 import { GradeRule } from './grade-rule';
+import { CSFile } from './cs-file';
 export class CourseSession {
     _id: any;
     course_id: any;
@@ -12,5 +13,6 @@ export class CourseSession {
     attendanceTemplate?: Attendance[];
     gradeItems?: GradeItem[];
     gradeRules?: GradeRule[];
-    editState: boolean;
+    files?: CSFile[];
+    editState?: boolean;
 }

@@ -7,24 +7,28 @@ var mongoose = require('mongoose');
 var config = require('./config/database');
 var index = require('./routes/index');
 var courses = require('./routes/courses');
+var upload = require('./routes/upload');
 var students = require('./routes/student');
 var users = require('./routes/users');
+var multer = require('multer');
+var fs = require('fs');
+var crypto = require("crypto");
+var mime = require("mime");
 
 // connect to mongoose
 mongoose.connect(config.database);
 mongoose.connection.on('connected', () => {
-	console.log('connected to database ' + config.database);
+  console.log('connected to database ' + config.database);
 });
-
 mongoose.connection.on('error', (err) => {
-	console.log('Error in connecting database  ' + err);
+  console.log('Error in connecting database  ' + err);
 });
-
 
 var app = express();
 var port = 3000;
 // cross browser origin requests
 app.use(cors());
+
 // view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -36,9 +40,8 @@ app.use(express.static(path.join(__dirname, 'client')));
 // Body Parser MW
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-	extended: false
+  extended: false
 }));
-
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -48,7 +51,8 @@ app.use('/', index);
 app.use('/api', courses);
 app.use('/api', students);
 app.use('/api/users', users);
+app.use('/api', upload);
 
-app.listen(port, function() {
-	console.log('Server started on port ' + port);
+app.listen(port, function () {
+  console.log('Server started on port ' + port);
 });

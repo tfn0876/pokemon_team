@@ -74,4 +74,8 @@ export class CourseService {
         return this.http.put('/api/session', JSON.stringify(courseSession), { headers: headers })
             .map(res => res.json());
     }
+    deleteFile(courseSessionId, fileName) {
+         return this.http.delete('/api/file/' + courseSessionId + '_' + fileName)
+            .map(res => res.json());
+    }
 }

@@ -145,4 +145,49 @@
             </table>
         </div>
     </div>
+    <div class="frame">
+        <div class="heading">FILES UPLOAD {{CalcUpload()}}<span class="mif-home icon"></span></div>
+        <div class="content">
+            <button (click)="showDialog = !showDialog" class="button primary">Upload</button>
+            <upload-dialog *ngIf="courseSession" [(visible)]="showDialog" [(courseSessions)]="courseSession">
+            </upload-dialog>
+            <table *ngIf="courseSession && courseSession.files" class="bordered">
+                <thead>
+                    <tr>
+                        <th>Link </th>
+                        <th> Syllabus? </th>
+                        <th> NAME </th>
+                        <th> Uploaded Date </th>
+                        <th> Uploaded By </th>
+                        <th> DELETE </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let file of courseSession.files">
+                        <td>
+                            <a target="blank" href="{{file.url}}">  <span class="mif-file-word mif-2x fg-red"> </span></a>
+                        </td>
+                        <td>
+                            <label class="switch"> 
+                               <input type="checkbox" [(ngModel)]="file.isSyllabus" (ngModelChange)="changeIsSyllabus(file)" name="active" class="form-control">
+                            <span class="check"> </span>
+                            </label>
+                        </td>
+                        <td>
+                            {{file.name}}
+                        </td>
+                        <td>
+                            {{file.uploadedDate | date : 'y-MM-dd'}}
+                        </td>
+                        <td>
+                            {{file.uploadedBy}}
+                        </td>
+                        <td class="manage">
+                            <a class="button danger" type="button" (click)="deleteFile(file)">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
