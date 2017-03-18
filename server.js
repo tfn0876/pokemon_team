@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', index);
 app.use('/api', courses);
-app.set('port', process.env.PORT || 3000);
-app.listen(process.env.PORT || 3000, function () {
-    console.log('Server started on port ' + (process.env.PORT || 3000));
+app.set('port', process.env.PORT || port);
+app.listen(process.env.PORT || port, function () {
+    console.log('Server started on port ' + (process.env.PORT || port));
 });
