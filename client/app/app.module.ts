@@ -23,7 +23,7 @@ import { SessionSettingComponent } from './components/session-detail/session-set
 import { SessionAttendanceComponent } from './components/session-detail/session-attendance.component';
 import { SessionGradingComponent } from './components/session-detail/session-grading.component';
 import { SessionSyllabusComponent } from './components/session-detail/session-syllabus.component';
-import { TruncatePipe } from './pipe/truncate';
+import { TruncatePipe } from './Pipe/truncate';
 import { DayOfWeekPipe } from './pipe/dayofweek'
 import { AppRoutingModule } from './app-routing.module';
 import { ValidateService } from './services/validate.service';

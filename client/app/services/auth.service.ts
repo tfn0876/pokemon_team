@@ -18,7 +18,7 @@ registerUser(user)
 {
 	let headers = new Headers();
 	headers.append('Content-Type','application/json');
-	return this._http.post('http://localhost:3000/api/users/register',user,{headers:headers})
+	return this._http.post('api/users/register',user,{headers:headers})
 	.map(res=>res.json());
 }
 
@@ -26,7 +26,7 @@ updateUser(user)
 {
 	let headers = new Headers();
 	headers.append('Content-Type','application/json');
-	return this._http.put('http://localhost:3000/api/users/updateprofile',user,{headers:headers})
+	return this._http.put('api/users/updateprofile',user,{headers:headers})
 	.map(res=>res.json());	
 }
 
@@ -40,7 +40,7 @@ authenticateUser(user)
 	let temp:any;
 	let headers = new Headers();
 	headers.append('Content-Type','application/json');
-	return this._http.post('http://localhost:3000/api/users/authenticate',user,{headers:headers})
+	return this._http.post('api/users/authenticate',user,{headers:headers})
 	.map(res=>res.json());
 	
 }

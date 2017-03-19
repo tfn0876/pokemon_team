@@ -25,7 +25,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 var app = express();
-var port = 3000;
+var port = process.env.port || 3000;
 // cross browser origin requests
 app.use(cors());
 
