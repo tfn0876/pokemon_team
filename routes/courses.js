@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs');
-var db = mongojs('mongodb://pokemon_db:cis510_pokemon@ds111529.mlab.com:11529/teaching', ['courses']);
+var db = mongojs('mongodb://pokemon_db:cis510_pokemon@ds111529.mlab.com:11529/teaching',
+ ['courses','courseSessions','students', 'studentSessions', 'users']);
 //var db = mongojs('mongodb://hardikparikh1988:123456798@ds117889.mlab.com:17889/testdbhardik', ['courses']);
 
 // get all courses
@@ -127,7 +128,8 @@ router.post('/session', function (req, res, next) {
             professor: courseSession.professor,
             startDate: courseSession.startDate,
             endDate: courseSession.endDate,
-            daysOftheWeek: courseSession.daysOftheWeek
+            daysOftheWeek: courseSession.daysOftheWeek,
+            files: courseSession.files,
         };
         db.courseSessions.save(_courseSessoin, function (err, courseSession) {
             if (err) {
@@ -163,7 +165,8 @@ router.put('/session', function (req, res, next) {
             daysOftheWeek: courseSession.daysOftheWeek,
             attendanceTemplate: courseSession.attendanceTemplate,
             gradeItems: courseSession.gradeItems,
-            gradeRules: courseSession.gradeRules
+            gradeRules: courseSession.gradeRules,
+            files: courseSession.files,
         };
         db.courseSessions.update({
             _id: mongojs.ObjectId(courseSession._id)

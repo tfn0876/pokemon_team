@@ -3,35 +3,68 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './components/courses/courses.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
+
 import { StudentComponent } from './components/student/student.component';
 import { CourseSessionComponent } from './components/course-sessions/course-sessions.component';
 import { SessionDetailComponent } from './components/session-detail/session.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterStudentComponent } from './components/session-detail/register-student.component';
+
 import { CurrentStudentsComponent } from './components/session-detail/current-students.component';
 import { SessionSettingComponent } from './components/session-detail/session-setting.component';
 import { SessionAttendanceComponent } from './components/session-detail/session-attendance.component';
 import { SessionGradingComponent } from './components/session-detail/session-grading.component';
-import { TruncatePipe } from './pipe/truncate';
+import { SessionSyllabusComponent } from './components/session-detail/session-syllabus.component';
+import { TruncatePipe } from './Pipe/truncate';
 import { DayOfWeekPipe } from './pipe/dayofweek'
 import { AppRoutingModule } from './app-routing.module';
+import { ValidateService } from './services/validate.service';
+import { AuthService } from './services/auth.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FileSelectDirective } from './utils/fileupload/file-select.directive';
+import { FileDropDirective } from './utils/fileupload/file-drop.directive';
+import { DialogComponent } from './components/upload-dialog/upload-dialog.component';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
+
+import { nvD3 } from './utils/ng2-nvd3/ng2-nvd3';
+
 @NgModule({
   imports: [BrowserModule, HttpModule, FormsModule, AppRoutingModule],
   declarations: [
-    AppComponent, CoursesComponent, StudentComponent,
-    DashboardComponent, CourseSessionComponent,
+    AppComponent,
+    CoursesComponent,
+    StudentComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    NavbarComponent,
+    SidebarComponent,
+    DashboardComponent,
+    CourseSessionComponent,
     RegisterStudentComponent,
     CurrentStudentsComponent,
-    SessionSettingComponent,
-    SessionDetailComponent, 
+    SessionDetailComponent,
     SessionAttendanceComponent,
     SessionGradingComponent,
-    TruncatePipe, 
-    DayOfWeekPipe
-    ],
-  bootstrap: [AppComponent]
+    SessionSettingComponent,
+    TruncatePipe,
+    DayOfWeekPipe,
+    FileSelectDirective,
+    FileDropDirective,
+    DialogComponent,
+    SessionSyllabusComponent,
+    PdfViewerComponent,
+    nvD3],
+  bootstrap: [AppComponent],
+  providers: [ValidateService, AuthService, AuthGuard]
 })
 export class AppModule { }

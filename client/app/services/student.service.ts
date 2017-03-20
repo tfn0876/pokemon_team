@@ -30,6 +30,7 @@ export class StudentService {
             .map(res => res.json());
     }
     updateStudent(student) {
+        
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this.http.put('/api/student', JSON.stringify(student), { headers: headers })

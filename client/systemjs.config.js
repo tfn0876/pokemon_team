@@ -1,4 +1,3 @@
-
 (function (global) {
   System.config({
     paths: {
@@ -19,8 +18,15 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       // other libraries
-      'rxjs':                      'npm:rxjs',
+      'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+      'angular2-jwt': 'node_modules/angular2-jwt/angular2-jwt.js',
+      'ng2-file-upload': 'npm:ng2-file-upload',
+      'ng2-pdf-viewer': 'node_modules/ng2-pdf-viewer',
+      'pdfjs-dist': 'node_modules/pdfjs-dist',
+      'd3': 'node_modules/d3',
+      'nvd3': 'node_modules/nvd3',
+      'ng2-nvd3': 'node_modules/ng2-nvd3'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -28,12 +34,38 @@
         main: './main.js',
         defaultExtension: 'js'
       },
+      'angular2-jwt': {
+        "defaultExtension": 'js'
+      },
       rxjs: {
+        defaultExtension: 'js'
+      },
+      'ng2-file-upload': {
         defaultExtension: 'js'
       },
       'angular-in-memory-web-api': {
         main: './index.js',
         defaultExtension: 'js'
+      },
+      'ng2-pdf-viewer': {
+        main: 'dist/index.js',
+        defaultExtension: 'js'
+      },
+      'd3': {
+        main: 'build/d3.node.js',
+        format: global,
+        defaultExtension: 'js'
+      },
+      'nvd3': {
+        format: global
+      },
+      'pdfjs-dist': {
+        defaultExtension: 'js'
+      },
+      'ng2-nvd3': {
+        main: "build/lib/ng2-nvd3.js",
+        format: 'cjs',
+        defaultExtension: "js"
       }
     }
   });
