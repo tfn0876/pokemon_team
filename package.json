@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "engines": {
     "node": "6.10.0",
-    "npm" : "4.1.1"
+    "npm" : "4.1.1 || 4.1.2"
   },
   "description": "KSI CIS510 Software project management project",
   "main": "server.js",
